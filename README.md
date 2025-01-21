@@ -21,8 +21,18 @@ Die notwendigen Python-Bibliotheken sind in der Datei `requirements.txt` aufgeli
 ---
 
 ## Installation
+# Bitte klonen Sie das Repository:
+git clone https://github.com/lv082599/comcast-complaint-analysis.git
+cd comcast-complaint-analysis
 
-1. Bitte klonen Sie das Repository:
-   ```bash
-   git clone https://github.com/lv082599/ComcastComplaintAnalysis.git
-   cd ComcastComplaintAnalysis
+# Virtuelle Umgebung erstellen und aktivieren
+python -m venv venv
+source venv/bin/activate  # (Mac)
+venv\Scripts\activate     # (Windows CMD)
+
+# Abhängigkeiten installieren
+pip install -r requirements.txt
+
+# Code ausführen
+python main.py
+
