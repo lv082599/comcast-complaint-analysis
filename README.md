@@ -17,9 +17,9 @@ pip install -r requirements.txt
 
 ## Verzeichnis-Struktur
 comcast-complaint-analysis/
-  -daten/           #csv-Datei als Quelle
-  -src/             #Quellcode (main.py)
-  -requirements.txt #Abhängigkeiten
+-daten/           #csv-Datei als Quelle
+-src/             #Quellcode (main.py)
+-requirements.txt #Abhängigkeiten
 
 ## Kontakt
 Bei Fragen oder Feedback bitte an folgende Email-Adresse wenden:
