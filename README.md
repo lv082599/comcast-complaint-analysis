@@ -26,7 +26,7 @@ git clone https://github.com/lv082599/comcast-complaint-analysis.git
 cd comcast-complaint-analysis
 
 # Virtuelle Umgebung erstellen und aktivieren
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate  # (Mac)
 venv\Scripts\activate     # (Windows CMD)
 
@@ -34,5 +34,5 @@ venv\Scripts\activate     # (Windows CMD)
 pip install -r requirements.txt
 
 # Code ausführen
-python main.py
+python3 main.py
 
