@@ -12,9 +12,9 @@ Dieses Projekt analysiert Beschwerden von Comcast-Kunden basierend auf einem ber
 
 ## Voraussetzungen
 
-Um dieses Projekt auszuführen, benötigen Sie folgende Software:
-- **Python**: Version 3.10 oder neuer.
-- **Virtuelle Umgebung (empfohlen)**: Verwendung von `venv` oder einer ähnlichen Umgebung.
+Um dieses Projekt auszuführen, wird folgende Python-Version empfohlen:
+- **Python**: Version 3.13
+- **Virtuelle Umgebung (empfohlen)**: Verwendung von `venv`.
 
 Die notwendigen Python-Bibliotheken sind in der Datei `requirements.txt` aufgelistet.
 
@@ -22,7 +22,7 @@ Die notwendigen Python-Bibliotheken sind in der Datei `requirements.txt` aufgeli
 
 ## Installation
 
-1. Klonen Sie das Repository:
+1. Bitte klonen Sie das Repository:
    ```bash
    git clone https://github.com/lv082599/ComcastComplaintAnalysis.git
    cd ComcastComplaintAnalysis
