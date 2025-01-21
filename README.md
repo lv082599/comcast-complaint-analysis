@@ -34,5 +34,5 @@ venv\Scripts\activate     # (Windows CMD)
 pip install -r requirements.txt
 
 # Code ausführen
-python3 main.py
+python main.py
 
