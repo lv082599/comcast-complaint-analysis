@@ -13,7 +13,7 @@ Dieses Projekt analysiert Beschwerden von Comcast-Kunden basierend auf einem ber
 ## Voraussetzungen
 
 Um dieses Projekt auszuführen, wird folgende Python-Version empfohlen:
-- **Python**: Version 3.13
+- **Python**: Version 3.13.3
 - **Virtuelle Umgebung (empfohlen)**: Verwendung von `venv`.
 
 Die notwendigen Python-Bibliotheken sind in der Datei `requirements.txt` aufgelistet.
