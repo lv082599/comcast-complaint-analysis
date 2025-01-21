@@ -20,7 +20,7 @@ import seaborn as sns
 # Herunterladen der NLTK-Ressourcen
 import nltk
 nltk.download('stopwords')
-nltk.download('punkt')
+nltk.download('punkt_tab')
 nltk.download('wordnet')
 
 # Definieren des Datei-Pfads
