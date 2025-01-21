@@ -1,21 +1,28 @@
-# comcast-complaint-analysis
+# Comcast Complaint Analysis Project
 
-## Projektbeschreibung
-Dieses Projekt analysiert Comcast-Kundenbeschwerden mit Techniken aus der Natürlichen Sprachverarbeitung (NLP) und Clustering, um Muster und Hauptthemen in den Beschwerden zu identifizieren.
+## Beschreibung
 
-## Inhalte
-- **Datenbereinigung**: Entfernung von Sonderzeichen, Stoppwörtern und Tokenisierung.
-- **TF-IDF-Vektorisierung**: Umwandlung der bereinigten Texte in numerische Werte.
-- **Themenmodellierung (LDA)**: Extraktion der Hauptthemen in den Beschwerden.
-- **Clustering (K-Means)**: Gruppierung der Beschwerden basierend auf Ähnlichkeiten.
-- **Visualisierungen**: Darstellung der häufigsten Wörter und Cluster-Verteilungen.
+Dieses Projekt analysiert Beschwerden von Comcast-Kunden basierend auf einem bereitgestellten Datensatz. Die Hauptziele sind:
+1. **Textbereinigung**: Entfernen von Sonderzeichen, Stoppwörtern und Zahlen sowie Tokenisierung und Lemmatisierung.
+2. **Themenmodellierung**: Identifikation von Schlüsselthemen in den Beschwerden mit LDA.
+3. **Clustering**: Gruppierung ähnlicher Beschwerden mit K-Means.
+4. **Visualisierungen**: Darstellung der Ergebnisse mittels Wordcloud und Cluster-Visualisierung.
 
-## Anforderungen
-Installiere die Abhängigkeiten mit folgender Datei in deinem Terminal:
+---
 
-pip install -r requirements.txt
+## Voraussetzungen
 
-## Kontakt
-Bei Fragen oder Feedback bitte an folgende Email-Adresse wenden:
-- **Autor**: Lukas Vitzthum
-- **E-Mail**: vitzthumlukas@gmail.com
+Um dieses Projekt auszuführen, benötigen Sie folgende Software:
+- **Python**: Version 3.10 oder neuer.
+- **Virtuelle Umgebung (empfohlen)**: Verwendung von `venv` oder einer ähnlichen Umgebung.
+
+Die notwendigen Python-Bibliotheken sind in der Datei `requirements.txt` aufgelistet.
+
+---
+
+## Installation
+
+1. Klonen Sie das Repository:
+   ```bash
+   git clone https://github.com/lv082599/ComcastComplaintAnalysis.git
+   cd ComcastComplaintAnalysis
