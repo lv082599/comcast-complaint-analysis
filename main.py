@@ -24,7 +24,7 @@ nltk.download('punkt')
 nltk.download('wordnet')
 
 # Definieren des Datei-Pfads
-file_path = os.path.join('daten', 'Comcast.csv')
+file_path = os.path.join('Comcast.csv')
 
 # Laden des Datensatzes mit einer Fehlerbehandlung
 try:
