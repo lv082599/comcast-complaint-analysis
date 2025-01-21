@@ -23,5 +23,5 @@ comcast-complaint-analysis/
 
 ## Kontakt
 Bei Fragen oder Feedback bitte an folgende Email-Adresse wenden:
-**Autor**: Lukas Vitzthum
-**E-Mail**: vitzthumlukas@gmail.com
+- **Autor**: Lukas Vitzthum
+- **E-Mail**: vitzthumlukas@gmail.com
