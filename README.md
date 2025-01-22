@@ -2,7 +2,7 @@
 
 ## Beschreibung
 
-Dieses Projekt analysiert Beschwerden von Comcast-Kunden basierend auf einem bereitgestellten Datensatz. Die Hauptziele sind:
+Dieses Projekt analysiert Beschwerden von Comcast-Kunden basierend auf bereitgestellten Daten. Die Hauptziele sind:
 1. **Textbereinigung**: Entfernen von Sonderzeichen, Stoppwörtern und Zahlen sowie Tokenisierung und Lemmatisierung.
 2. **Themenmodellierung**: Identifikation von Schlüsselthemen in den Beschwerden mit LDA und NMF.
 3. **Clustering**: Gruppierung ähnlicher Beschwerden mit K-Means und Visualisierung mittels PCA.
