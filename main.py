@@ -1,5 +1,5 @@
 ########################################################
-## Lukas Vitzthum 21-01-25 Projekt Data Analysis v1.1 ##
+## Lukas Vitzthum 21-01-25 Projekt Data Analysis v1.2 ##
 ########################################################
 
 # Importieren der benötigten Bibliotheken
@@ -11,8 +11,9 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.decomposition import LatentDirichletAllocation
+from sklearn.decomposition import LatentDirichletAllocation, NMF
 from sklearn.cluster import KMeans
+from sklearn.decomposition import PCA
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -85,10 +86,34 @@ print(f"TF-IDF-Matrix: {tfidf_matrix.shape}")
 lda = LatentDirichletAllocation(n_components=5, random_state=42)
 lda.fit(tfidf_matrix)
 
-# Schlüsselwörter für jedes Thema anzeigen
+print("Themen aus LDA:")
 for index, topic in enumerate(lda.components_):
     print(f"Thema {index}:")
     print([tfidf_vectorizer.get_feature_names_out()[i] for i in topic.argsort()[-10:]])
+
+# Themenmodellierung mit NMF
+nmf = NMF(n_components=5, random_state=42)
+nmf.fit(tfidf_matrix)
+
+print("Themen aus NMF:")
+for index, topic in enumerate(nmf.components_):
+    print(f"Thema {index}:")
+    print([tfidf_vectorizer.get_feature_names_out()[i] for i in topic.argsort()[-10:]])
+
+# Visualisierung der Themen
+def plot_top_words(model, feature_names, n_top_words, title):
+    for topic_idx, topic in enumerate(model.components_):
+        top_features = topic.argsort()[-n_top_words:]
+        words = [feature_names[i] for i in top_features]
+        weights = topic[top_features]
+        plt.barh(words, weights)
+        plt.title(f"{title} - Thema {topic_idx}")
+        plt.xlabel("Gewicht")
+        plt.ylabel("Wörter")
+        plt.show()
+
+plot_top_words(lda, tfidf_vectorizer.get_feature_names_out(), 10, "LDA")
+plot_top_words(nmf, tfidf_vectorizer.get_feature_names_out(), 10, "NMF")
 
 # Clustering mit K-Means
 kmeans = KMeans(n_clusters=5, random_state=42)
@@ -99,6 +124,23 @@ df['cluster'] = kmeans.labels_
 print("Cluster-Verteilung:")
 print(df['cluster'].value_counts())
 
+# Cluster-Verteilung visualisieren
+sns.countplot(x='cluster', data=df)
+plt.title('Verteilung der Beschwerden pro Cluster')
+plt.xlabel('Cluster')
+plt.ylabel('Anzahl der Beschwerden')
+plt.show()
+
+# PCA-Visualisierung der Cluster
+pca = PCA(n_components=2)
+reduced_data = pca.fit_transform(tfidf_matrix.toarray())
+
+plt.scatter(reduced_data[:, 0], reduced_data[:, 1], c=df['cluster'], cmap='viridis')
+plt.title("PCA-Visualisierung der Cluster")
+plt.xlabel("Komponente 1")
+plt.ylabel("Komponente 2")
+plt.show()
+
 # Visualisierung der Wordcloud
 def generate_wordcloud(text):
     wordcloud = WordCloud(
@@ -108,20 +150,12 @@ def generate_wordcloud(text):
         max_words=200,
         random_state=42
     ).generate(text)
-    
+
     plt.figure(figsize=(12, 6))
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis('off')
     plt.title("Wordcloud der häufigsten Wörter in Comcast Beschwerden", fontsize=16, fontweight='bold')
     plt.show()
 
-# Wordcloud generieren
 all_text = ' '.join(df['cleaned_complaints'])
 generate_wordcloud(all_text)
-
-# Cluster-Verteilung visualisieren
-sns.countplot(x='cluster', data=df)
-plt.title('Verteilung der Beschwerden pro Cluster')
-plt.xlabel('Cluster')
-plt.ylabel('Anzahl der Beschwerden')
-plt.show()
