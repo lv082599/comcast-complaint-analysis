@@ -89,4 +89,4 @@ python3 main.py
 Für Fragen oder Anmerkungen wenden Sie sich bitte an:
 - **Name**: Lukas Vitzthum
 - **GitHub**: [lv082599](https://github.com/lv082599)
-- **E-Mail**: lukas.vitzthum@example.com
+- **E-Mail**: vitzthumlukas@gmail.com
