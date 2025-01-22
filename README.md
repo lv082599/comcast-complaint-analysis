@@ -50,9 +50,9 @@ python3 main.py
 ```
 
 ### Ergebnisse
-1. **Bereinigungsergebnisse**: Die bereinigten Texte werden angezeigt und optional als CSV exportiert.
+1. **Bereinigungsergebnisse**: Die bereinigten Texte werden angezeigt und optional per User-Export als CSV exportiert.
 2. **Themenmodellierung**: Ergebnisse von LDA und NMF werden in der Konsole ausgegeben und visualisiert.
-3. **Cluster-Analyse**: Cluster-Verteilung wird mit Balkendiagrammen und PCA-Visualisierungen dargestellt.
+3. **Cluster-Analyse**: Cluster-Verteilung wird mit Balkendiagrammen und PCA-Visualisierung dargestellt.
 4. **Wordcloud**: Häufige Wörter werden in einer Wordcloud dargestellt.
 
 ---
