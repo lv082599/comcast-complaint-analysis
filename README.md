@@ -31,8 +31,8 @@ source venv/bin/activate  # (Mac)
 venv\Scripts\activate     # (Windows CMD)
 
 # Abhängigkeiten installieren
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 
 # Code ausführen
-python main.py
+python3 main.py
 
