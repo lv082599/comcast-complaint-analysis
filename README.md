@@ -31,8 +31,8 @@ cd comcast-complaint-analysis
 ### Virtuelle Umgebung erstellen und aktivieren
 ```bash
 python3 -m venv venv
-source venv/bin/activate  # (Mac)
-venv\Scripts\activate     # (Windows CMD)
+source venv/bin/activate  # Mac
+venv\Scripts\activate     # Windows CMD
 ```
 
 ### Abhängigkeiten installieren
