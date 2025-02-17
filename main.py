@@ -1,5 +1,5 @@
 ########################################################
-## Lukas Vitzthum 21-01-22 Projekt Data Analysis v1.4 ##
+## Lukas Vitzthum 17-02-25 Projekt Data Analysis v1.3 ##
 ########################################################
 
 # Importieren der benötigten Bibliotheken
@@ -74,7 +74,7 @@ vectorizer_tfidf = TfidfVectorizer(max_features=1000, ngram_range=(1,2))
 tfidf_matrix = vectorizer_tfidf.fit_transform(df['cleaned_complaints'])
 print(f"TF-IDF-Matrix: {tfidf_matrix.shape}")
 
-# CountVectorizer
+# CountVectorizer als zweite Vektorisierungstechnik
 vectorizer_count = CountVectorizer(max_features=1000, ngram_range=(1,2))
 count_matrix = vectorizer_count.fit_transform(df['cleaned_complaints'])
 print(f"CountVectorizer-Matrix: {count_matrix.shape}")
