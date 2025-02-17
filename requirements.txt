@@ -11,4 +11,3 @@ scipy==1.11.4
 tqdm==4.66.2
 setuptools==68.2.2
 wheel==0.42.0
-
