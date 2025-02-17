@@ -1,5 +1,5 @@
 ########################################################
-## Lukas Vitzthum 17-02-25 Projekt Data Analysis v1.3 ##
+## Lukas Vitzthum 21-01-22 Projekt Data Analysis v1.4 ##
 ########################################################
 
 # Importieren der benötigten Bibliotheken
@@ -12,7 +12,7 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.decomposition import LatentDirichletAllocation, NMF
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
@@ -31,11 +31,10 @@ for resource in nltk_resources:
 # Datei-Pfad
 file_path = 'Comcast.csv'
 
-# Laden des Datensatzes mit Fehlerbehandlung
 def load_dataset(file_path):
     try:
         df = pd.read_csv(file_path)
-        df.dropna(subset=['Customer Complaint'], inplace=True)  # Fehlende Werte entfernen
+        df.dropna(subset=['Customer Complaint'], inplace=True)
         return df
     except FileNotFoundError:
         print(f"Fehler: Die Datei '{file_path}' wurde nicht gefunden. Bitte überprüfen Sie den Pfad.")
@@ -46,12 +45,10 @@ df = load_dataset(file_path)
 # Funktion zur Textbereinigung mit N-Gram-Integration
 def clean_text(text, ngram_range=(1, 2)):
     stop_words = set(stopwords.words('english'))
-    text = re.sub(r'[^a-zA-Z\s]', '', str(text))  # Entfernt Sonderzeichen und Zahlen
+    text = re.sub(r'[^a-zA-Z\s]', '', str(text))
     text = text.lower()
     words = word_tokenize(text)
     words = [word for word in words if word not in stop_words]
-    
-    # N-Gram-Feature-Erstellung
     ngrams = ['_'.join(words[i:i+ngram_range[1]]) for i in range(len(words)-ngram_range[1]+1)]
     return ' '.join(words + ngrams)
 
@@ -73,9 +70,14 @@ def export_cleaned_data(dataframe, output_path="bereinigte_daten.csv"):
 export_cleaned_data(df)
 
 # TF-IDF-Vektorisierung
-vectorizer = TfidfVectorizer(max_features=1000, ngram_range=(1,2))
-tfidf_matrix = vectorizer.fit_transform(df['cleaned_complaints'])
+vectorizer_tfidf = TfidfVectorizer(max_features=1000, ngram_range=(1,2))
+tfidf_matrix = vectorizer_tfidf.fit_transform(df['cleaned_complaints'])
 print(f"TF-IDF-Matrix: {tfidf_matrix.shape}")
+
+# CountVectorizer
+vectorizer_count = CountVectorizer(max_features=1000, ngram_range=(1,2))
+count_matrix = vectorizer_count.fit_transform(df['cleaned_complaints'])
+print(f"CountVectorizer-Matrix: {count_matrix.shape}")
 
 # Themenmodellierung mit LDA
 lda = LatentDirichletAllocation(n_components=5, random_state=42)
@@ -124,3 +126,21 @@ def generate_wordcloud(text):
     plt.show()
 
 generate_wordcloud(' '.join(df['cleaned_complaints']))
+
+# Speichern der Analyseergebnisse in eine Datei
+def save_summary():
+    with open("summary.txt", "w") as f:
+        f.write("### Analysebericht ###\n")
+        f.write(f"Anzahl der Cluster: 5\n")
+        f.write(f"LDA Coherence Score: {lda_coherence:.4f}\n")
+        f.write(f"NMF Coherence Score: {nmf_coherence:.4f}\n")
+        f.write(f"Durchschnittliche Anzahl von Tokens pro Beschwerde: {df['num_tokens'].mean():.2f}\n")
+        f.write("\nThemen aus LDA:\n")
+        for index, topic in enumerate(lda.components_):
+            f.write(f"Thema {index}: {[vectorizer_tfidf.get_feature_names_out()[i] for i in topic.argsort()[-10:]]}\n")
+        f.write("\nThemen aus NMF:\n")
+        for index, topic in enumerate(nmf.components_):
+            f.write(f"Thema {index}: {[vectorizer_tfidf.get_feature_names_out()[i] for i in topic.argsort()[-10:]]}\n")
+    print("Analysebericht gespeichert in 'summary.txt'.")
+
+save_summary()
